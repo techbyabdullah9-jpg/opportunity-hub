@@ -13,7 +13,7 @@ export default function TopInstructors() {
   return (
     <section className="bg-[#f6f5f1] pt-10 sm:pt-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-5 text-sm font-bold tracking-[0.15em] text-gray-900">
+        <h2 className="mb-5 text-sm font-extrabold tracking-[0.18em] text-gray-900">
           TOP-RATED INSTRUCTORS
         </h2>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
