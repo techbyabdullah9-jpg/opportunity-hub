@@ -1,6 +1,8 @@
 import { Star, Heart, PlayCircle } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 export interface Instructor {
+  slug: string;
   name: string;
   city: string;
   rating: number;
@@ -60,9 +62,14 @@ export default function InstructorCard({ instructor }: { instructor: Instructor 
           </span>
           <span className="font-semibold text-gray-800">{instructor.price}</span>
         </div>
-        <button className="mt-3 w-full rounded-lg bg-[#f5c21a] py-2 text-[13px] font-semibold text-[#0c1422] transition hover:bg-[#ffcf33]">
+        <Link
+          to="/tutor/$slug"
+          params={{ slug: instructor.slug }}
+          hash="availability"
+          className="mt-3 block w-full rounded-lg bg-[#f5c21a] py-2 text-center text-[13px] font-semibold text-[#0c1422] transition hover:bg-[#ffcf33]"
+        >
           Book Trial Slot
-        </button>
+        </Link>
       </div>
     </div>
   );

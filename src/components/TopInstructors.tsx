@@ -5,10 +5,10 @@ import inst3 from "@/assets/inst-3.jpg";
 import inst4 from "@/assets/inst-4.jpg";
 
 const INSTRUCTORS: Instructor[] = [
-  { name: "Sir Ahmed", city: "Lahore", rating: 4.9, reviews: 120, price: "Rs. 1,500/hr", cover: inst1, avatar: inst1 },
-  { name: "Miss Sana", city: "Karachi", rating: 4.8, reviews: 98, price: "Rs. 1,500/hr", cover: inst2, avatar: inst2 },
-  { name: "Engr. Bilal", city: "Islamabad", rating: 4.9, reviews: 110, price: "Rs. 1,500/hr", cover: inst3, avatar: inst3 },
-  { name: "Miss Ayesha", city: "Rawalpindi", rating: 4.9, reviews: 132, price: "Rs. 1,500/hr", cover: inst4, avatar: inst4 },
+  { slug: "sir-ahmed", name: "Sir Ahmed", city: "Lahore", rating: 4.9, reviews: 120, price: "Rs. 1,500/hr", cover: inst1, avatar: inst1 },
+  { slug: "miss-sana", name: "Miss Sana", city: "Karachi", rating: 4.8, reviews: 98, price: "Rs. 1,500/hr", cover: inst2, avatar: inst2 },
+  { slug: "engr-bilal", name: "Engr. Bilal", city: "Islamabad", rating: 4.9, reviews: 110, price: "Rs. 1,500/hr", cover: inst3, avatar: inst3 },
+  { slug: "miss-ayesha", name: "Miss Ayesha", city: "Rawalpindi", rating: 4.9, reviews: 132, price: "Rs. 1,500/hr", cover: inst4, avatar: inst4 },
 ];
 
 export default function TopInstructors() {
