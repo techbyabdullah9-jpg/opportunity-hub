@@ -13,10 +13,15 @@ export interface Category {
 }
 
 const CATEGORIES: Category[] = [
-  { label: "Language", title: "Languages", image: langImg, icon: "globe" },
-  { label: "Tech Skills", title: "Tech Skills", image: techImg, icon: "monitor" },
+  { label: "Category", title: "Languages", image: langImg, icon: "globe" },
+  { label: "Category", title: "Tech Skills", image: techImg, icon: "monitor" },
   { label: "Category", title: "Schooling", image: schoolImg, icon: "globe" },
   { label: "Category", title: "Islamic Studies", image: islamicImg, icon: "globe" },
+];
+
+const PREVIEW: Category[] = [
+  { label: "Language", title: "Languages", image: langImg, icon: "globe" },
+  { label: "Tech Skills", title: "Islamic Studies", image: islamicImg, icon: "monitor" },
 ];
 
 interface Props {
@@ -24,7 +29,7 @@ interface Props {
 }
 
 export default function CategoryGrid({ preview = false }: Props) {
-  const items = preview ? CATEGORIES.slice(0, 2) : CATEGORIES;
+  const items = preview ? PREVIEW : CATEGORIES;
   return (
     <div className={`grid gap-5 sm:gap-6 ${preview ? "sm:grid-cols-2" : "sm:grid-cols-2"}`}>
       {items.map((c, i) => {
