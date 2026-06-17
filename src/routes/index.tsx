@@ -1,29 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
+import Home from "@/pages/Home";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Ustad Hub — Learn Skills & Languages with Expert Tutors" },
+      { name: "description", content: "Pakistan's premier platform connecting expert tutors with ambitious students. Biometric verified, escrow protected." },
+      { property: "og:title", content: "Ustad Hub" },
+      { property: "og:description", content: "Learn languages, tech skills, schooling and Islamic studies from top-rated instructors." },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  return <Home />;
 }

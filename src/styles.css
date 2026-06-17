@@ -142,3 +142,14 @@
     color: var(--color-foreground);
   }
 }
+
+.bg-hero-gradient {
+  background: linear-gradient(
+    90deg,
+    #0c1422 0%,
+    #122033 25%,
+    #18263b 50%,
+    #122033 75%,
+    #0c1422 100%
+  );
+}
