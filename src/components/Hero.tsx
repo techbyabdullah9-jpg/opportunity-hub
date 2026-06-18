@@ -33,9 +33,7 @@ export default function Hero() {
           <img
             src={heroAi}
             alt="AI illustration"
-            width={520}
-            height={520}
-            className="h-72 w-72 object-contain sm:h-80 sm:w-80 md:h-[420px] md:w-[420px] lg:h-[460px] lg:w-[460px]"
+            className="w-full max-w-[280px] object-contain sm:max-w-[340px] md:max-w-[420px] lg:max-w-[480px]"
           />
         </motion.div>
       </div>
