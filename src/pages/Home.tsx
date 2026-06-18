@@ -2,7 +2,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import SearchBar from "@/components/SearchBar";
 import FeaturedCategories from "@/components/FeaturedCategories";
-import CategoryGrid from "@/components/CategoryGrid";
 import TopInstructors from "@/components/TopInstructors";
 import ProcessSection from "@/components/ProcessSection";
 import Testimonials from "@/components/Testimonials";
@@ -18,15 +17,6 @@ export default function Home() {
       </div>
 
       <FeaturedCategories />
-
-      <section className="bg-[#f6f5f1] pt-12 sm:pt-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-6 text-sm font-extrabold tracking-[0.18em] text-gray-900">
-            EXPLORE OPPORTUNITIES
-          </h2>
-          <CategoryGrid />
-        </div>
-      </section>
 
       <TopInstructors />
       <ProcessSection />
