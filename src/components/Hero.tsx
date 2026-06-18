@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import heroAi from "@/assets/hero-ai.png";
+import heroAi from "@/assets/hero-updated.png";
 
 export default function Hero() {
   return (
@@ -33,7 +33,7 @@ export default function Hero() {
           <img
             src={heroAi}
             alt="AI illustration"
-            className="w-full max-w-[280px] object-contain sm:max-w-[340px] md:max-w-[420px] lg:max-w-[480px]"
+            className="w-full max-w-[280px] object-contain sm:max-w-[340px] md:max-w-[420px] lg:max-w-[580px] "
           />
         </motion.div>
       </div>
