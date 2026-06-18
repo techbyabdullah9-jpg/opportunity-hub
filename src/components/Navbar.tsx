@@ -1,5 +1,6 @@
 import { Zap, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -11,12 +12,12 @@ export default function Navbar() {
   return (
     <header className="relative z-20">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
-        <a href="#" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <Zap className="h-6 w-6 fill-[#f5c21a] text-[#f5c21a]" />
           <span className="text-xl font-extrabold tracking-wide text-white">
             USTAD <span className="text-[#f5c21a]">HUB</span>
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
@@ -28,9 +29,12 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
-          <button className="rounded-md bg-[#f5c21a] px-4 py-2 text-sm font-semibold text-[#0c1422] transition hover:bg-[#ffcf33]">
+          <Link
+            to="/auth"
+            className="rounded-md bg-[#f5c21a] px-4 py-2 text-sm font-semibold text-[#0c1422] transition hover:bg-[#ffcf33]"
+          >
             Login / Register
-          </button>
+          </Link>
         </nav>
 
         <button
@@ -77,9 +81,13 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
-          <button className="mt-2 w-full rounded-md bg-[#f5c21a] px-4 py-2 text-sm font-semibold text-[#0c1422]">
+          <Link
+            to="/auth"
+            onClick={() => setOpen(false)}
+            className="mt-2 block w-full rounded-md bg-[#f5c21a] px-4 py-2 text-center text-sm font-semibold text-[#0c1422]"
+          >
             Login / Register
-          </button>
+          </Link>
         </div>
       </aside>
     </header>
