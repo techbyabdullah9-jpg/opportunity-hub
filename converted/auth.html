@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ustad Hub - Login & Register</title>
+  <meta name="description" content="Access your account, or register as a Student or Instructor on Ustad Hub.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#f6f5f1',
+            foreground: '#0c1422',
+            primary: '#0c1422',
+            'primary-foreground': '#ffffff',
+            secondary: '#f5c21a',
+            'secondary-foreground': '#0c1422',
+            accent: '#f5c21a',
+            'accent-foreground': '#0c1422',
+            muted: '#d0d4dc',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen bg-[#f6f5f1] text-[#0c1422] antialiased">
+
+  <!-- Header -->
+  <header class="bg-hero-gradient">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
+      <a href="index.html" class="flex items-center gap-2">
+        <i data-lucide="zap" class="h-6 w-6 fill-[#f5c21a] text-[#f5c21a]"></i>
+        <span class="text-xl font-extrabold tracking-wide text-white">
+          USTAD <span class="text-[#f5c21a]">HUB</span>
+        </span>
+      </a>
+      <a href="index.html" class="text-sm text-white/70 hover:text-[#f5c21a] transition">
+        Back to Home
+      </a>
+    </div>
+  </header>
+
+    <!-- Main Auth Section -->
+  <main class="mx-auto flex min-h-[calc(100vh-80px)] flex-col items-center justify-center px-4 py-8 sm:px-6 lg:px-8 relative">
+    <div class="w-full max-w-xl animate-fade-in-up">
+      
+      <!-- Top Level Tabs (Login / Register) -->
+      <div class="mb-6 flex rounded-xl bg-gray-200/60 p-1 shadow-sm">
+        <button id="tab-login" onclick="setAuthView('login')" class="flex-1 rounded-lg bg-white py-2.5 text-sm font-bold text-gray-900 shadow-sm transition-all ring-1 ring-gray-900/5">
+          Login
+        </button>
+        <button id="tab-register" onclick="setAuthView('register')" class="flex-1 rounded-lg py-2.5 text-sm font-semibold text-gray-500 transition-all hover:text-gray-900">
+          Register
+        </button>
+      </div>
+
+      <div class="relative w-full shadow-xl ring-1 ring-gray-200/60 rounded-2xl overflow-hidden bg-white">
+
+        <!-- LOGIN VIEW -->
+        <div id="login-view-container" class="p-6 sm:p-8">
+          <div class="mb-6">
+            <h2 class="text-2xl font-extrabold text-gray-900">
+              Welcome Back
+            </h2>
+            <p class="mt-1 text-sm text-gray-600">
+              Sign in to continue your learning journey
+            </p>
+          </div>
+
+          <!-- Error Alert -->
+          <div id="login-error" class="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-600 hidden">
+            <span>Login failed</span>
+          </div>
+          <!-- Success Alert -->
+          <div id="login-success" class="mb-4 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-600 hidden flex items-center gap-2">
+            <i data-lucide="circle-check" class="h-4 w-4 shrink-0 text-emerald-600"></i>
+            <span>Login successful!</span>
+          </div>
+
+          <!-- Login Form -->
+          <form id="login-form" class="space-y-4">
+            
+            <div class="space-y-2">
+              <label for="login-email" class="text-sm font-semibold text-gray-700">Email Address</label>
+              <div class="relative">
+                <i data-lucide="mail" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400"></i>
+                <input
+                  id="login-email"
+                  type="email"
+                  placeholder="Enter your email"
+                  required
+                  class="w-full rounded-md border border-gray-200 py-2.5 pl-10 pr-4 text-sm text-gray-800 focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none transition"
+                />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="login-password" class="text-sm font-semibold text-gray-700">Password</label>
+              <div class="relative">
+                <i data-lucide="lock" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400"></i>
+                <input
+                  id="login-password"
+                  type="password"
+                  placeholder="Enter your password"
+                  required
+                  class="w-full rounded-md border border-gray-200 py-2.5 pl-10 pr-10 text-sm text-gray-800 focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none transition"
+                />
+                <button
+                  type="button"
+                  class="password-toggle absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition"
+                  data-target="login-password"
+                  aria-label="Toggle password visibility"
+                >
+                  <i data-lucide="eye" class="h-4 w-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <input
+                  id="remember-me"
+                  type="checkbox"
+                  class="h-4 w-4 rounded border-gray-300 text-[#f5c21a] focus:ring-[#f5c21a]"
+                />
+                <label for="remember-me" class="text-sm font-medium text-gray-600">
+                  Remember me
+                </label>
+              </div>
+              <button
+                type="button"
+                onclick="window.showToast('Password reset link sent (simulated)')"
+                class="text-sm font-medium text-[#f5c21a] hover:text-[#d4a817] transition"
+              >
+                Forgot Password?
+              </button>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-[#f5c21a] text-[#0c1422] hover:bg-[#ffcf33] h-11 rounded-md font-semibold transition"
+            >
+              Login
+            </button>
+
+            <!-- Separator -->
+            <div class="relative my-6">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-200"></div>
+              </div>
+              <div class="relative flex justify-center text-xs uppercase">
+                <span class="bg-white px-2 text-gray-500 font-medium">Or continue with</span>
+              </div>
+            </div>
+
+            <!-- Third-Party Auth Buttons -->
+            <div class="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onclick="handleGoogleAuth()"
+                class="inline-flex h-11 items-center justify-center rounded-md border border-gray-300 bg-white px-4 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
+              >
+                <svg class="mr-2 h-5 w-5" viewBox="0 0 24 24">
+                  <path
+                    fill="currentColor"
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                  />
+                </svg>
+                Google
+              </button>
+              <button
+                type="button"
+                onclick="handleMicrosoftAuth()"
+                class="inline-flex h-11 items-center justify-center rounded-md border border-gray-300 bg-white px-4 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
+              >
+                <svg class="mr-2 h-5 w-5" viewBox="0 0 24 24">
+                  <path fill="#F25022" d="M1 1h10v10H1z" />
+                  <path fill="#00A4EF" d="M1 13h10v10H1z" />
+                  <path fill="#7FBA00" d="M13 1h10v10H13z" />
+                  <path fill="#FFB900" d="M13 13h10v10H13z" />
+                </svg>
+                Microsoft
+              </button>
+            </div>
+
+            <!-- Pre-populated credentials hint -->
+            <div class="mt-4 rounded-xl bg-gray-50 p-4 text-xs text-gray-600 border border-gray-100">
+              <p class="font-bold text-gray-700 mb-1">Quick Login for Testing:</p>
+              <ul class="list-disc list-inside space-y-1">
+                <li><b>Student:</b> <code class="bg-gray-200 px-1 py-0.5 rounded">student@ustadhub.com</code> / <code class="bg-gray-200 px-1 py-0.5 rounded">password123</code></li>
+                <li><b>Instructor:</b> <code class="bg-gray-200 px-1 py-0.5 rounded">tutor@ustadhub.com</code> / <code class="bg-gray-200 px-1 py-0.5 rounded">password123</code></li>
+              </ul>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- REGISTER VIEW -->
+        <div id="register-view-container" class="hidden p-6 sm:p-8 bg-[#142033]">
+          <div class="mb-6 text-center">
+            <h2 class="text-2xl font-extrabold text-white">Join UstadHub</h2>
+            <p class="mt-1 text-sm text-[#d0d4dc]">Learn & Teach Worldwide</p>
+          </div>
+
+          <!-- Role Selection Sub-Tabs -->
+          <div class="mb-6 flex rounded-xl bg-white/5 p-1 border border-white/10">
+             <button id="subtab-student" onclick="setRegistrationRole('student')" class="flex-1 rounded-lg bg-[#f5c21a] py-2 text-sm font-bold text-[#0c1422] transition-all flex items-center justify-center gap-2 shadow-sm">
+               <i data-lucide="book-open" class="h-4 w-4"></i> Student
+             </button>
+             <button id="subtab-instructor" onclick="setRegistrationRole('instructor')" class="flex-1 rounded-lg py-2 text-sm font-medium text-[#d0d4dc] transition-all hover:text-white flex items-center justify-center gap-2">
+               <i data-lucide="briefcase" class="h-4 w-4"></i> Instructor
+             </button>
+          </div>
+
+          <!-- Student Registration Form -->
+          <div id="student-reg-form-container" class="">
+            <!-- Alerts -->
+            <div id="student-error" class="mb-4 rounded-lg bg-red-900/40 p-3 text-sm text-red-300 hidden">
+              <span>Error</span>
+            </div>
+            <div id="student-success" class="mb-4 rounded-lg bg-emerald-900/40 p-3 text-sm text-emerald-300 hidden flex items-center gap-2">
+              <i data-lucide="circle-check" class="h-4 w-4 text-emerald-300"></i>
+              <span>Success</span>
+            </div>
+
+            <!-- Form -->
+            <form id="student-reg-form" class="space-y-4 text-white">
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="student-name" class="text-sm font-medium text-[#d0d4dc]">Full Name <span class="text-red-500">*</span></label>
+                  <div class="relative text-gray-400">
+                    <i data-lucide="user" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                    <input
+                      id="student-name"
+                      type="text"
+                      placeholder="John Doe"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-4 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="student-username" class="text-sm font-medium text-[#d0d4dc]">Username <span class="text-red-500">*</span></label>
+                  <div class="relative text-gray-500">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2">@</span>
+                    <input
+                      id="student-username"
+                      type="text"
+                      placeholder="johndoe"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-4 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label for="student-email" class="text-sm font-medium text-[#d0d4dc]">Email Address <span class="text-red-500">*</span></label>
+                <div class="relative text-gray-400">
+                  <i data-lucide="mail" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                  <input
+                    id="student-email"
+                    type="email"
+                    placeholder="john@example.com"
+                    class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-4 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                  />
+                </div>
+              </div>
+
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="student-phone" class="text-sm font-medium text-[#d0d4dc]">Phone (Optional)</label>
+                  <div class="relative text-gray-400">
+                    <i data-lucide="phone" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                    <input
+                      id="student-phone"
+                      type="tel"
+                      placeholder="+92 300 1234567"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-4 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="student-dob" class="text-sm font-medium text-[#d0d4dc]">Date of Birth (Optional)</label>
+                  <div class="relative text-gray-400">
+                    <i data-lucide="calendar" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                    <input
+                      id="student-dob"
+                      type="date"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-4 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="student-country" class="text-sm font-medium text-[#d0d4dc]">Country <span class="text-red-500">*</span></label>
+                  <select
+                    id="student-country"
+                    class="w-full rounded-md border border-white/20 bg-[#142033] py-2.5 px-3 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none"
+                  >
+                    <option value="" disabled selected>Select country</option>
+                    <option value="Pakistan">Pakistan</option>
+                    <option value="United States">United States</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Saudi Arabia">Saudi Arabia</option>
+                    <option value="UAE">UAE</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="student-city" class="text-sm font-medium text-[#d0d4dc]">City <span class="text-red-500">*</span></label>
+                  <div class="relative text-gray-400">
+                    <i data-lucide="map-pin" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                    <input
+                      id="student-city"
+                      type="text"
+                      placeholder="Karachi"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-4 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Multi-select interests tags -->
+              <div class="space-y-2">
+                <label class="text-sm font-medium text-[#d0d4dc]">Learning Interests <span class="text-red-500">*</span></label>
+                <div id="student-interests-container" class="flex flex-wrap gap-2">
+                  <button type="button" class="interest-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Languages">Languages</button>
+                  <button type="button" class="interest-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Mathematics">Mathematics</button>
+                  <button type="button" class="interest-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Science">Science</button>
+                  <button type="button" class="interest-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Computer Science">Computer Science</button>
+                  <button type="button" class="interest-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Web Development">Web Development</button>
+                  <button type="button" class="interest-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Quran & Islamic Studies">Quran & Islamic Studies</button>
+                  <button type="button" class="interest-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Business">Business</button>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label for="student-lang" class="text-sm font-medium text-[#d0d4dc]">Preferred Language <span class="text-red-500">*</span></label>
+                <select
+                  id="student-lang"
+                  class="w-full rounded-md border border-white/20 bg-[#142033] py-2.5 px-3 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none"
+                >
+                  <option value="" disabled selected>Select language</option>
+                  <option value="English">English</option>
+                  <option value="Urdu">Urdu</option>
+                  <option value="Arabic">Arabic</option>
+                  <option value="Punjabi">Punjabi</option>
+                  <option value="Sindhi">Sindhi</option>
+                  <option value="Pashto">Pashto</option>
+                  <option value="German">German</option>
+                </select>
+              </div>
+
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="student-password" class="text-sm font-medium text-[#d0d4dc]">Password <span class="text-red-500">*</span></label>
+                  <div class="relative text-gray-400">
+                    <i data-lucide="lock" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                    <input
+                      id="student-password"
+                      type="password"
+                      placeholder="Min 8 characters"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-10 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                    <button
+                      type="button"
+                      class="password-toggle absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+                      data-target="student-password"
+                      aria-label="Toggle password visibility"
+                    >
+                      <i data-lucide="eye" class="h-4 w-4"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="student-confirm-password" class="text-sm font-medium text-[#d0d4dc]">Confirm Password <span class="text-red-500">*</span></label>
+                  <div class="relative text-gray-400">
+                    <i data-lucide="lock" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                    <input
+                      id="student-confirm-password"
+                      type="password"
+                      placeholder="Confirm password"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-10 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                    <button
+                      type="button"
+                      class="password-toggle absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+                      data-target="student-confirm-password"
+                      aria-label="Toggle password visibility"
+                    >
+                      <i data-lucide="eye" class="h-4 w-4"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Terms Box -->
+              <div class="flex items-start gap-2 pt-2">
+                <input
+                  id="student-terms"
+                  type="checkbox"
+                  class="mt-1 h-4 w-4 rounded border-white/30 text-[#f5c21a] focus:ring-[#f5c21a]"
+                />
+                <label for="student-terms" class="text-sm text-[#d0d4dc]">
+                  I accept the <span class="text-[#f5c21a] font-medium cursor-pointer">Terms of Service</span> and <span class="text-[#f5c21a] font-medium cursor-pointer">Privacy Policy</span>
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full bg-[#f5c21a] text-[#0c1422] hover:bg-[#ffcf33] h-11 rounded-md font-semibold transition"
+              >
+                Register as Student
+              </button>
+
+              <div class="relative my-4">
+                <div class="absolute inset-0 flex items-center">
+                  <div class="w-full border-t border-white/20"></div>
+                </div>
+                <div class="relative flex justify-center text-xs uppercase">
+                  <span class="bg-[#142033] px-2 text-[#d0d4dc]">Or continue with</span>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onclick="handleGoogleAuth()"
+                class="w-full h-11 bg-white text-[#142033] hover:bg-[#142033] hover:text-white font-medium rounded-md flex items-center justify-center transition-colors"
+              >
+                <svg class="mr-2 h-5 w-5" viewBox="0 0 24 24">
+                  <path
+                    fill="currentColor"
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                  />
+                </svg>
+                Continue with Google
+              </button>
+            </form>
+          </div>
+
+          <!-- Instructor Registration Form -->
+          <div id="instructor-reg-form-container" class="hidden">
+            <!-- Alerts -->
+            <div id="instructor-error" class="mb-4 rounded-lg bg-red-900/40 p-3 text-sm text-red-300 hidden">
+              <span>Error</span>
+            </div>
+            <div id="instructor-success" class="mb-4 rounded-lg bg-emerald-900/40 p-3 text-sm text-emerald-300 hidden flex items-center gap-2">
+              <i data-lucide="circle-check" class="h-4 w-4 text-emerald-300"></i>
+              <span>Success</span>
+            </div>
+
+            <!-- Form -->
+            <form id="instructor-reg-form" class="space-y-4 text-white">
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="inst-name" class="text-sm font-medium text-[#d0d4dc]">Full Name <span class="text-red-500">*</span></label>
+                  <div class="relative text-gray-400">
+                    <i data-lucide="user" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                    <input
+                      id="inst-name"
+                      type="text"
+                      placeholder="Sir John Doe"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-4 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="inst-display" class="text-sm font-medium text-[#d0d4dc]">Professional Display Name <span class="text-red-500">*</span></label>
+                  <input
+                    id="inst-display"
+                    type="text"
+                    placeholder="Sir John"
+                    class="w-full rounded-md border border-white/20 bg-white/10 py-2 px-3 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                  />
+                </div>
+              </div>
+
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="inst-username" class="text-sm font-medium text-[#d0d4dc]">Username <span class="text-red-500">*</span></label>
+                  <div class="relative text-gray-500">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2">@</span>
+                    <input
+                      id="inst-username"
+                      type="text"
+                      placeholder="sirjohn"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-4 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="inst-email" class="text-sm font-medium text-[#d0d4dc]">Email Address <span class="text-red-500">*</span></label>
+                  <div class="relative text-gray-400">
+                    <i data-lucide="mail" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                    <input
+                      id="inst-email"
+                      type="email"
+                      placeholder="john@example.com"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-4 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="inst-phone" class="text-sm font-medium text-[#d0d4dc]">Phone Number <span class="text-red-500">*</span></label>
+                  <div class="relative text-gray-400">
+                    <i data-lucide="phone" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                    <input
+                      id="inst-phone"
+                      type="tel"
+                      placeholder="+92 300 1234567"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-4 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="inst-exp" class="text-sm font-medium text-[#d0d4dc]">Years of Experience <span class="text-red-500">*</span></label>
+                  <select
+                    id="inst-exp"
+                    class="w-full rounded-md border border-white/20 bg-[#142033] py-2.5 px-3 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none"
+                  >
+                    <option value="" disabled selected>Select experience</option>
+                    <option value="1">1 Year</option>
+                    <option value="2">2 Years</option>
+                    <option value="3">3 Years</option>
+                    <option value="5">5+ Years</option>
+                    <option value="10">10+ Years</option>
+                    <option value="15">15+ Years</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="inst-country" class="text-sm font-medium text-[#d0d4dc]">Country <span class="text-red-500">*</span></label>
+                  <select
+                    id="inst-country"
+                    class="w-full rounded-md border border-white/20 bg-[#142033] py-2.5 px-3 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none"
+                  >
+                    <option value="" disabled selected>Select country</option>
+                    <option value="Pakistan">Pakistan</option>
+                    <option value="United States">United States</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Saudi Arabia">Saudi Arabia</option>
+                    <option value="UAE">UAE</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="inst-city" class="text-sm font-medium text-[#d0d4dc]">City <span class="text-red-500">*</span></label>
+                  <div class="relative text-gray-400">
+                    <i data-lucide="map-pin" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                    <input
+                      id="inst-city"
+                      type="text"
+                      placeholder="Lahore"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-4 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label for="inst-headline" class="text-sm font-medium text-[#d0d4dc]">Professional Headline <span class="text-red-500">*</span></label>
+                <input
+                  id="inst-headline"
+                  type="text"
+                  placeholder="Senior Mathematics Teacher, Full-Stack Tech Mentor, etc."
+                  class="w-full rounded-md border border-white/20 bg-white/10 py-2 px-3 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                />
+              </div>
+
+              <!-- Teaching categories multi-select tags -->
+              <div class="space-y-2">
+                <label class="text-sm font-medium text-[#d0d4dc]">Teaching Categories / Subjects <span class="text-red-500">*</span></label>
+                <div id="instructor-categories-container" class="flex flex-wrap gap-2">
+                  <button type="button" class="category-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Mathematics">Mathematics</button>
+                  <button type="button" class="category-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Physics">Physics</button>
+                  <button type="button" class="category-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Web Development">Web Development</button>
+                  <button type="button" class="category-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Python Programming">Python Programming</button>
+                  <button type="button" class="category-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="English Language">English Language</button>
+                  <button type="button" class="category-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Quran Studies">Quran Studies</button>
+                </div>
+              </div>
+
+              <!-- Languages spoken multi-select tags -->
+              <div class="space-y-2">
+                <label class="text-sm font-medium text-[#d0d4dc]">Languages Spoken <span class="text-red-500">*</span></label>
+                <div id="instructor-languages-container" class="flex flex-wrap gap-2">
+                  <button type="button" class="language-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="English">English</button>
+                  <button type="button" class="language-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Urdu">Urdu</button>
+                  <button type="button" class="language-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Arabic">Arabic</button>
+                  <button type="button" class="language-tag bg-white/10 text-white hover:bg-white/20 rounded-full px-3 py-1.5 text-xs font-medium" data-value="Pashto">Pashto</button>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label for="inst-bio" class="text-sm font-medium text-[#d0d4dc]">Short Bio / Introduction (Optional)</label>
+                <textarea
+                  id="inst-bio"
+                  placeholder="Tell students about yourself, your teaching style, and what makes you unique..."
+                  class="min-h-[80px] w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-[#f5c21a]"
+                ></textarea>
+              </div>
+
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="inst-linkedin" class="text-sm font-medium text-[#d0d4dc]">LinkedIn Profile (Optional)</label>
+                  <div class="relative text-gray-400">
+                    <i data-lucide="linkedin" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                    <input
+                      id="inst-linkedin"
+                      type="url"
+                      placeholder="https://linkedin.com/in/username"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-4 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="inst-web" class="text-sm font-medium text-[#d0d4dc]">Personal Website (Optional)</label>
+                  <div class="relative text-gray-400">
+                    <i data-lucide="globe" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                    <input
+                      id="inst-web"
+                      type="url"
+                      placeholder="https://yourwebsite.com"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-4 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="inst-password" class="text-sm font-medium text-[#d0d4dc]">Password <span class="text-red-500">*</span></label>
+                  <div class="relative text-gray-400">
+                    <i data-lucide="lock" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                    <input
+                      id="inst-password"
+                      type="password"
+                      placeholder="Min 8 characters"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-10 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                    <button
+                      type="button"
+                      class="password-toggle absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+                      data-target="inst-password"
+                      aria-label="Toggle password visibility"
+                    >
+                      <i data-lucide="eye" class="h-4 w-4"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="inst-confirm-password" class="text-sm font-medium text-[#d0d4dc]">Confirm Password <span class="text-red-500">*</span></label>
+                  <div class="relative text-gray-400">
+                    <i data-lucide="lock" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"></i>
+                    <input
+                      id="inst-confirm-password"
+                      type="password"
+                      placeholder="Confirm password"
+                      class="w-full rounded-md border border-white/20 bg-white/10 py-2 pl-10 pr-10 text-sm text-white focus:border-[#f5c21a] focus:ring-1 focus:ring-[#f5c21a] outline-none placeholder:text-gray-500"
+                    />
+                    <button
+                      type="button"
+                      class="password-toggle absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+                      data-target="inst-confirm-password"
+                      aria-label="Toggle password visibility"
+                    >
+                      <i data-lucide="eye" class="h-4 w-4"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Terms Box -->
+              <div class="flex items-start gap-2 pt-2">
+                <input
+                  id="inst-terms"
+                  type="checkbox"
+                  class="mt-1 h-4 w-4 rounded border-white/30 text-[#f5c21a] focus:ring-[#f5c21a]"
+                />
+                <label for="inst-terms" class="text-sm text-[#d0d4dc]">
+                  I accept the <span class="text-[#f5c21a] font-medium cursor-pointer">Terms of Service</span> and <span class="text-[#f5c21a] font-medium cursor-pointer">Privacy Policy</span>
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full bg-[#f5c21a] text-[#0c1422] hover:bg-[#ffcf33] h-11 rounded-md font-semibold transition"
+              >
+                Register as Instructor
+              </button>
+
+              <div class="relative my-4">
+                <div class="absolute inset-0 flex items-center">
+                  <div class="w-full border-t border-white/20"></div>
+                </div>
+                <div class="relative flex justify-center text-xs uppercase">
+                  <span class="bg-[#142033] px-2 text-[#d0d4dc]">Or continue with</span>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onclick="handleGoogleAuth()"
+                class="w-full h-11 bg-white text-[#142033] hover:bg-[#142033] hover:text-white font-medium rounded-md flex items-center justify-center transition-colors"
+              >
+                <svg class="mr-2 h-5 w-5" viewBox="0 0 24 24">
+                  <path
+                    fill="currentColor"
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                  />
+                </svg>
+                Continue with Google
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+<!-- Lucide Icons Library CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Main Common Scripts -->
+  <script src="js/main.js"></script>
+  
+  <!-- Auth Specific Script -->
+  <script src="js/auth.js"></script>
+</body>
+</html>

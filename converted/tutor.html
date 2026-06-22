@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ustad Hub - Tutor Profile</title>
+  <meta name="description" content="Book a trial session with our top-rated verified tutors on Ustad Hub.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#f6f5f1',
+            foreground: '#0c1422',
+            primary: '#0c1422',
+            'primary-foreground': '#ffffff',
+            secondary: '#f5c21a',
+            'secondary-foreground': '#0c1422',
+            accent: '#f5c21a',
+            'accent-foreground': '#0c1422',
+            muted: '#d0d4dc',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen bg-[#f6f5f1] text-[#0c1422] antialiased">
+
+  <!-- Header Gradient Area -->
+  <div class="bg-hero-gradient pb-2">
+    <!-- Navbar Component -->
+    <header class="relative z-20">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
+        <a href="index.html" class="flex items-center gap-2">
+          <i data-lucide="zap" class="h-6 w-6 fill-[#f5c21a] text-[#f5c21a]"></i>
+          <span class="text-xl font-extrabold tracking-wide text-white">
+            USTAD <span class="text-[#f5c21a]">HUB</span>
+          </span>
+        </a>
+
+        <nav class="hidden items-center gap-8 md:flex">
+          <a href="#" class="text-sm font-medium text-white/90 transition hover:text-[#f5c21a]">Find Instructors</a>
+          <a href="#" class="text-sm font-medium text-white/90 transition hover:text-[#f5c21a]">Blogs</a>
+          <a href="#" class="text-sm font-medium text-white/90 transition hover:text-[#f5c21a]">How It Works</a>
+          <div id="desktop-auth-container">
+            <a href="auth.html" class="rounded-md bg-[#f5c21a] px-4 py-2 text-sm font-semibold text-[#0c1422] transition hover:bg-[#ffcf33]">
+              Login / Register
+            </a>
+          </div>
+        </nav>
+
+        <button
+          id="open-menu-btn"
+          aria-label="Toggle menu"
+          class="text-white md:hidden hover:text-[#f5c21a] transition"
+        >
+          <i data-lucide="menu" class="h-6 w-6"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Overlay -->
+      <div
+        id="mobile-overlay"
+        class="fixed inset-0 z-30 bg-black/50 transition-opacity duration-300 md:hidden pointer-events-none opacity-0"
+      ></div>
+
+      <!-- Mobile Sidebar -->
+      <aside
+        id="mobile-sidebar"
+        class="fixed right-0 top-0 z-40 h-full w-72 max-w-[80%] transform bg-[#0c1422] shadow-2xl transition-transform duration-300 ease-out md:hidden translate-x-full"
+      >
+        <div class="flex items-center justify-between border-b border-white/10 px-5 py-4">
+          <span class="text-base font-extrabold tracking-wide text-white">
+            USTAD <span class="text-[#f5c21a]">HUB</span>
+          </span>
+          <button
+            id="close-menu-btn"
+            aria-label="Close menu"
+            class="text-white hover:text-[#f5c21a] transition"
+          >
+            <i data-lucide="x" class="h-5 w-5"></i>
+          </button>
+        </div>
+        <div class="space-y-4 px-5 py-5">
+          <a href="#" class="block text-sm font-medium text-white/90 hover:text-[#f5c21a] transition">Find Instructors</a>
+          <a href="#" class="block text-sm font-medium text-white/90 hover:text-[#f5c21a] transition">Blogs</a>
+          <a href="#" class="block text-sm font-medium text-white/90 hover:text-[#f5c21a] transition">How It Works</a>
+          <div id="mobile-auth-container" class="pt-2 border-t border-white/10">
+            <a href="auth.html" class="block w-full rounded-md bg-[#f5c21a] px-4 py-2 text-center text-sm font-semibold text-[#0c1422]">
+              Login / Register
+            </a>
+          </div>
+        </div>
+      </aside>
+    </header>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="border-b border-gray-200 bg-white">
+    <div class="mx-auto flex max-w-7xl items-center gap-2 px-4 py-3 text-xs text-gray-500 sm:px-6 lg:px-8">
+      <a href="index.html" class="hover:text-[#f5c21a] transition">Home</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-[#f5c21a] transition">Find Instructors</a>
+      <span>/</span>
+      <span id="breadcrumb-name" class="text-gray-900 font-medium">Sir Ahmed</span>
+    </div>
+  </div>
+
+  <!-- Header Card Section -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div class="flex flex-col gap-6 md:flex-row md:items-start">
+        <img
+          id="tutor-avatar"
+          src="assets/inst-1.jpg"
+          alt="Sir Ahmed"
+          class="h-32 w-32 rounded-2xl object-cover ring-4 ring-[#f5c21a]/20 md:h-40 md:w-40 shadow-sm"
+        />
+        <div class="flex-1">
+          <div class="flex flex-wrap items-center gap-2">
+            <h1 id="tutor-name" class="text-2xl font-extrabold text-gray-900 md:text-3xl">
+              Sir Ahmed
+            </h1>
+            <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">
+              <i data-lucide="badge-check" class="h-3.5 w-3.5 text-emerald-600"></i> Verified
+            </span>
+          </div>
+          <p id="tutor-title" class="mt-1 text-sm text-gray-600">
+            Empowering Students with Customized Learning Support
+          </p>
+          <p class="mt-3">
+            <span id="tutor-price" class="text-2xl font-extrabold text-gray-900">Rs. 1,500</span>
+            <span class="text-sm text-gray-500"> /session</span>
+            <span class="ml-2 text-xs text-gray-500">Starting from</span>
+          </p>
+
+          <div class="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-600">
+            <span class="inline-flex items-center gap-1">
+              <i data-lucide="star" class="h-4 w-4 fill-[#f5c21a] text-[#f5c21a]"></i>
+              <b id="tutor-rating" class="text-gray-900">5.0</b>/5.0 <span id="tutor-reviews" class="text-gray-500">(24 reviews)</span>
+            </span>
+            <span class="inline-flex items-center gap-1">
+              <i data-lucide="calendar" class="h-4 w-4 text-gray-400"></i>
+              <b id="tutor-booked" class="text-gray-900">74</b> Booked sessions
+            </span>
+            <span class="inline-flex items-center gap-1">
+              <i data-lucide="clock" class="h-4 w-4 text-gray-400"></i>
+              <span id="tutor-response" class="text-gray-900 font-medium">2 Hours</span> response time
+            </span>
+            <span class="inline-flex items-center gap-1">
+              <i data-lucide="map-pin" class="h-4 w-4 text-gray-400"></i>
+              <span id="tutor-city" class="text-gray-900 font-medium">Lahore, Pakistan</span>
+            </span>
+          </div>
+
+          <!-- Social Media Icons -->
+          <div class="mt-4 flex flex-wrap items-center gap-3 text-gray-500">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-400">Social</span>
+            <a href="#" class="grid h-8 w-8 place-items-center rounded-full bg-gray-100 hover:bg-[#f5c21a]/20 hover:text-[#0c1422] transition duration-200">
+              <i data-lucide="facebook" class="h-4 w-4"></i>
+            </a>
+            <a href="#" class="grid h-8 w-8 place-items-center rounded-full bg-gray-100 hover:bg-[#f5c21a]/20 hover:text-[#0c1422] transition duration-200">
+              <i data-lucide="twitter" class="h-4 w-4"></i>
+            </a>
+            <a href="#" class="grid h-8 w-8 place-items-center rounded-full bg-gray-100 hover:bg-[#f5c21a]/20 hover:text-[#0c1422] transition duration-200">
+              <i data-lucide="linkedin" class="h-4 w-4"></i>
+            </a>
+            <a href="#" class="grid h-8 w-8 place-items-center rounded-full bg-gray-100 hover:bg-[#f5c21a]/20 hover:text-[#0c1422] transition duration-200">
+              <i data-lucide="instagram" class="h-4 w-4"></i>
+            </a>
+            <a href="#" class="grid h-8 w-8 place-items-center rounded-full bg-gray-100 hover:bg-[#f5c21a]/20 hover:text-[#0c1422] transition duration-200">
+              <i data-lucide="youtube" class="h-4 w-4"></i>
+            </a>
+            <a href="#" class="grid h-8 w-8 place-items-center rounded-full bg-gray-100 hover:bg-[#f5c21a]/20 hover:text-[#0c1422] transition duration-200">
+              <i data-lucide="globe" class="h-4 w-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teach / Speak Categories Block -->
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        
+        <!-- Teach tags -->
+        <div class="rounded-2xl border border-gray-200 p-5">
+          <h3 class="mb-3 text-sm font-extrabold tracking-[0.18em] text-gray-900">I CAN TEACH</h3>
+          <div id="teach-tags-container" class="flex flex-wrap gap-2">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Speak tags -->
+        <div class="rounded-2xl border border-gray-200 p-5">
+          <h3 class="mb-3 text-sm font-extrabold tracking-[0.18em] text-gray-900">I CAN SPEAK</h3>
+          <div id="speak-tags-container" class="flex flex-wrap gap-2">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Calendar Section -->
+  <section id="availability" class="bg-white pb-10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="rounded-2xl border border-gray-200 p-5 md:p-7 shadow-sm">
+        
+        <!-- Header -->
+        <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+          <h2 class="text-xl font-extrabold text-gray-900">Book a session</h2>
+          <button onclick="window.showToast('Session request sent to tutor')" class="rounded-lg bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600 transition">
+            Request a Session
+          </button>
+        </div>
+
+        <!-- Date Range Controls -->
+        <div class="mb-5 flex flex-wrap items-center gap-3">
+          <button id="today-week-btn" class="rounded-md bg-[#f6f5f1] px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200 transition">
+            Today
+          </button>
+          <div class="inline-flex items-center gap-2 rounded-md bg-[#f6f5f1] px-4 py-2 text-sm text-gray-700 font-medium">
+            <i data-lucide="calendar" class="h-4 w-4 text-gray-500"></i>
+            <span id="date-range-label">Checking dates...</span>
+          </div>
+        </div>
+
+        <!-- Weekly Calendar Grid Wrapper -->
+        <div class="flex items-stretch gap-2">
+          
+          <!-- Previous week arrow -->
+          <button
+            id="prev-week-btn"
+            class="grid w-9 place-items-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 transition"
+            aria-label="Previous week"
+          >
+            <i data-lucide="chevron-left" class="h-4 w-4"></i>
+          </button>
+
+          <!-- Day Columns -->
+          <div id="calendar-columns" class="grid flex-1 grid-cols-7 gap-2">
+            <!-- Dynamically populated -->
+          </div>
+
+          <!-- Next week arrow -->
+          <button
+            id="next-week-btn"
+            class="grid w-9 place-items-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 transition"
+            aria-label="Next week"
+          >
+            <i data-lucide="chevron-right" class="h-4 w-4"></i>
+          </button>
+
+        </div>
+
+        <!-- Confirm Booking bar -->
+        <div id="confirm-booking-box" class="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-[#f6f5f1] p-4 hidden">
+          <p id="confirm-booking-text" class="text-sm text-gray-700">
+            Selected: <b class="text-gray-900">None</b>
+          </p>
+          <button
+            id="confirm-booking-btn"
+            class="rounded-lg bg-[#f5c21a] px-5 py-2 text-sm font-semibold text-[#0c1422] hover:bg-[#ffcf33] transition"
+          >
+            Confirm Booking
+          </button>
+        </div>
+
+        <!-- Success Message -->
+        <p id="success-msg" class="mt-3 text-sm font-medium text-emerald-700 hidden">
+          ✓ Trial slot booked. We'll email you the meeting details shortly.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabs Section -->
+  <section class="bg-[#f6f5f1] pb-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      
+      <!-- Tab controls -->
+      <div class="flex flex-wrap gap-2 border-b border-gray-200">
+        <button
+          id="tab-btn-education"
+          class="rounded-t-lg px-4 py-2 text-sm font-semibold bg-white text-gray-900 border-b border-white"
+        >
+          Education
+        </button>
+        <button
+          id="tab-btn-experience"
+          class="rounded-t-lg px-4 py-2 text-sm font-semibold text-gray-500 hover:text-gray-700"
+        >
+          Experience
+        </button>
+        <button
+          id="tab-btn-certs"
+          class="rounded-t-lg px-4 py-2 text-sm font-semibold text-gray-500 hover:text-gray-700"
+        >
+          Certification & Awards
+        </button>
+      </div>
+
+      <!-- Tab content box -->
+      <div id="tab-content-container" class="rounded-b-2xl rounded-tr-2xl bg-white p-6 md:p-8 shadow-sm">
+        <!-- Dynamically populated -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer Component -->
+  <footer class="bg-[#0c1422] text-[#d0d4dc]">
+    <div class="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-10 sm:px-6 md:grid-cols-5 lg:px-8">
+      
+      <!-- Brand & Socials -->
+      <div class="col-span-2 md:col-span-1">
+        <div class="flex items-center gap-2">
+          <i data-lucide="zap" class="h-5 w-5 fill-[#f5c21a] text-[#f5c21a]"></i>
+          <span class="text-lg font-extrabold text-white">
+            USTAD <span class="text-[#f5c21a]">HUB</span>
+          </span>
+        </div>
+        <div class="mt-4 flex gap-3 text-white">
+          <a href="#" aria-label="Twitter" class="hover:text-[#f5c21a] transition">
+            <i data-lucide="twitter" class="h-5 w-5"></i>
+          </a>
+          <a href="#" aria-label="Facebook" class="hover:text-[#f5c21a] transition">
+            <i data-lucide="facebook" class="h-5 w-5"></i>
+          </a>
+          <a href="#" aria-label="Instagram" class="hover:text-[#f5c21a] transition">
+            <i data-lucide="instagram" class="h-5 w-5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Categories Col -->
+      <div>
+        <p class="mb-3 text-xs font-bold tracking-[0.15em] text-white">
+          CATEGORIES
+        </p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Languages</a></li>
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Tech</a></li>
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Schooling</a></li>
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Advertising</a></li>
+        </ul>
+      </div>
+
+      <!-- Company Col -->
+      <div>
+        <p class="mb-3 text-xs font-bold tracking-[0.15em] text-white">
+          COMPANY
+        </p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="transition hover:text-[#f5c21a]">About</a></li>
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Careers</a></li>
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal Col -->
+      <div>
+        <p class="mb-3 text-xs font-bold tracking-[0.15em] text-white">
+          LEGAL
+        </p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Privacy Policy</a></li>
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter Col -->
+      <div>
+        <p class="mb-3 text-xs font-bold tracking-[0.15em] text-white">
+          NEWSLETTER
+        </p>
+        <form onsubmit="event.preventDefault(); window.showToast('Subscribed with: ' + this.querySelector('input').value);" class="flex flex-col gap-2">
+          <input
+            type="email"
+            placeholder="Email your address"
+            required
+            class="rounded-md bg-white/5 px-3 py-2 text-sm text-white outline-none ring-1 ring-white/10 placeholder:text-white/40 focus:ring-[#f5c21a] transition"
+          />
+          <button type="submit" class="rounded-md bg-[#f5c21a] py-2 text-sm font-semibold text-[#0c1422] hover:bg-[#ffcf33] transition">
+            SUBSCRIBE
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Lucide Icons Library CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Main Common Scripts -->
+  <script src="js/main.js"></script>
+  
+  <!-- Tutor Specific Script -->
+  <script src="js/tutor.js"></script>
+</body>
+</html>

@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ustad Hub - Sikhye Apni Zabaan Men, Kamyabi Hasil Karein!</title>
+  <meta name="description" content="Pakistan's premier enterprise platform connecting expert tutors with ambitious students. Backed by biometric verification and escrow contract protection.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#f6f5f1',
+            foreground: '#0c1422',
+            primary: '#0c1422',
+            'primary-foreground': '#ffffff',
+            secondary: '#f5c21a',
+            'secondary-foreground': '#0c1422',
+            accent: '#f5c21a',
+            'accent-foreground': '#0c1422',
+            muted: '#d0d4dc',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen bg-[#f6f5f1] text-[#0c1422] antialiased">
+
+  <!-- Header Gradient Area -->
+  <div class="bg-hero-gradient pb-6">
+    
+    <!-- Navbar Component -->
+    <header class="relative z-20">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
+        <a href="index.html" class="flex items-center gap-2">
+          <i data-lucide="zap" class="h-6 w-6 fill-[#f5c21a] text-[#f5c21a]"></i>
+          <span class="text-xl font-extrabold tracking-wide text-white">
+            USTAD <span class="text-[#f5c21a]">HUB</span>
+          </span>
+        </a>
+
+        <nav class="hidden items-center gap-8 md:flex">
+          <a href="#" class="text-sm font-medium text-white/90 transition hover:text-[#f5c21a]">Find Instructors</a>
+          <a href="#" class="text-sm font-medium text-white/90 transition hover:text-[#f5c21a]">Blogs</a>
+          <a href="#" class="text-sm font-medium text-white/90 transition hover:text-[#f5c21a]">How It Works</a>
+          <div id="desktop-auth-container">
+            <a href="auth.html" class="rounded-md bg-[#f5c21a] px-4 py-2 text-sm font-semibold text-[#0c1422] transition hover:bg-[#ffcf33]">
+              Login / Register
+            </a>
+          </div>
+        </nav>
+
+        <button
+          id="open-menu-btn"
+          aria-label="Toggle menu"
+          class="text-white md:hidden hover:text-[#f5c21a] transition"
+        >
+          <i data-lucide="menu" class="h-6 w-6"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Overlay -->
+      <div
+        id="mobile-overlay"
+        class="fixed inset-0 z-30 bg-black/50 transition-opacity duration-300 md:hidden pointer-events-none opacity-0"
+      ></div>
+
+      <!-- Mobile Sidebar -->
+      <aside
+        id="mobile-sidebar"
+        class="fixed right-0 top-0 z-40 h-full w-72 max-w-[80%] transform bg-[#0c1422] shadow-2xl transition-transform duration-300 ease-out md:hidden translate-x-full"
+      >
+        <div class="flex items-center justify-between border-b border-white/10 px-5 py-4">
+          <span class="text-base font-extrabold tracking-wide text-white">
+            USTAD <span class="text-[#f5c21a]">HUB</span>
+          </span>
+          <button
+            id="close-menu-btn"
+            aria-label="Close menu"
+            class="text-white hover:text-[#f5c21a] transition"
+          >
+            <i data-lucide="x" class="h-5 w-5"></i>
+          </button>
+        </div>
+        <div class="space-y-4 px-5 py-5">
+          <a href="#" class="block text-sm font-medium text-white/90 hover:text-[#f5c21a] transition">Find Instructors</a>
+          <a href="#" class="block text-sm font-medium text-white/90 hover:text-[#f5c21a] transition">Blogs</a>
+          <a href="#" class="block text-sm font-medium text-white/90 hover:text-[#f5c21a] transition">How It Works</a>
+          <div id="mobile-auth-container" class="pt-2 border-t border-white/10">
+            <a href="auth.html" class="block w-full rounded-md bg-[#f5c21a] px-4 py-2 text-center text-sm font-semibold text-[#0c1422]">
+              Login / Register
+            </a>
+          </div>
+        </div>
+      </aside>
+    </header>
+
+    <!-- Hero Component -->
+    <section class="relative">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-10 pt-6 sm:px-6 md:grid-cols-[1.4fr_1fr] md:pb-16 md:pt-10 lg:px-8">
+        
+        <!-- Hero Text -->
+        <div class="animate-fade-in-up">
+          <h1 class="text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl md:text-[56px]">
+            Sikhye Apni Zabaan
+            <br />
+            Men, Kamyabi Hasil Karein
+            <br />
+            International!
+          </h1>
+          <p class="mt-6 max-w-xl text-sm leading-relaxed text-[#d0d4dc] sm:text-base">
+            Pakistan's premier enterprise platform connecting expert tutors with
+            ambitious students. Backed by biometric verification and escrow
+            contract protection.
+          </p>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="flex justify-center md:justify-end animate-scale-in">
+          <img
+            src="assets/hero-updated.png"
+            alt="AI illustration"
+            class="w-full max-w-[280px] object-contain sm:max-w-[340px] md:max-w-[420px] lg:max-w-[580px]"
+          />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SearchBar Component -->
+    <section class="relative pb-12 sm:pb-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <form
+          id="search-form"
+          onsubmit="event.preventDefault(); window.showToast('Searching for: ' + this.querySelector('input').value);"
+          class="flex items-center gap-2 rounded-2xl bg-white p-2 shadow-lg"
+        >
+          <div class="flex flex-1 items-center gap-3 px-3">
+            <i data-lucide="search" class="h-5 w-5 shrink-0 text-gray-400"></i>
+            <input
+              type="text"
+              placeholder="What skill, subject, or language do you want to master today?"
+              class="w-full bg-transparent py-3 text-sm text-gray-800 outline-none placeholder:text-gray-400 sm:text-base"
+            />
+          </div>
+          <button
+            type="submit"
+            class="shrink-0 rounded-xl bg-[#f5c21a] px-5 py-3 text-sm font-semibold text-[#0c1422] transition hover:bg-[#ffcf33] sm:px-8"
+          >
+            Search
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Featured Categories Section -->
+  <section class="bg-[#f6f5f1] pt-12 sm:pt-16 pb-8">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-sm font-extrabold tracking-[0.18em] text-gray-900">
+            EXPLORE OPPORTUNITIES
+          </h2>
+          <p class="mb-6 mt-3 text-sm text-gray-600">
+            Swipe to explore more categories
+          </p>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex gap-2">
+          <button id="cat-prev-btn" class="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 bg-white hover:bg-gray-100 transition shadow-sm" aria-label="Previous">
+            <i data-lucide="chevron-left" class="h-5 w-5 text-gray-700"></i>
+          </button>
+          <button id="cat-next-btn" class="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 bg-white hover:bg-gray-100 transition shadow-sm" aria-label="Next">
+            <i data-lucide="chevron-right" class="h-5 w-5 text-gray-700"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Categories Slider -->
+      <div id="categories-slider" class="carousel-container gap-4">
+        
+        <!-- Category: Languages -->
+        <div class="carousel-item carousel-item-half p-2">
+          <div class="relative h-full overflow-hidden rounded-2xl bg-[#142033] p-5 sm:p-6 transition transform hover:-translate-y-1 duration-300">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex flex-col justify-between h-36">
+                <div class="inline-flex w-fit items-center gap-2 rounded-md bg-white/5 px-2.5 py-1 text-xs font-medium text-white/70">
+                  <i data-lucide="globe" class="h-3.5 w-3.5"></i>
+                  Category
+                </div>
+                <h3 class="text-2xl font-bold text-white sm:text-3xl">
+                  Languages
+                </h3>
+              </div>
+              <img
+                src="assets/cat-languages.png"
+                alt="Languages"
+                loading="lazy"
+                class="h-28 w-28 object-contain sm:h-32 sm:w-32"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Category: Tech Skills -->
+        <div class="carousel-item carousel-item-half p-2">
+          <div class="relative h-full overflow-hidden rounded-2xl bg-[#142033] p-5 sm:p-6 transition transform hover:-translate-y-1 duration-300">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex flex-col justify-between h-36">
+                <div class="inline-flex w-fit items-center gap-2 rounded-md bg-white/5 px-2.5 py-1 text-xs font-medium text-white/70">
+                  <i data-lucide="monitor" class="h-3.5 w-3.5"></i>
+                  Category
+                </div>
+                <h3 class="text-2xl font-bold text-white sm:text-3xl">
+                  Tech Skills
+                </h3>
+              </div>
+              <img
+                src="assets/cat-tech.png"
+                alt="Tech Skills"
+                loading="lazy"
+                class="h-28 w-28 object-contain sm:h-32 sm:w-32"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Category: Schooling -->
+        <div class="carousel-item carousel-item-half p-2">
+          <div class="relative h-full overflow-hidden rounded-2xl bg-[#142033] p-5 sm:p-6 transition transform hover:-translate-y-1 duration-300">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex flex-col justify-between h-36">
+                <div class="inline-flex w-fit items-center gap-2 rounded-md bg-white/5 px-2.5 py-1 text-xs font-medium text-white/70">
+                  <i data-lucide="globe" class="h-3.5 w-3.5"></i>
+                  Category
+                </div>
+                <h3 class="text-2xl font-bold text-white sm:text-3xl">
+                  Schooling
+                </h3>
+              </div>
+              <img
+                src="assets/cat-schooling.png"
+                alt="Schooling"
+                loading="lazy"
+                class="h-28 w-28 object-contain sm:h-32 sm:w-32"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Category: Islamic Studies -->
+        <div class="carousel-item carousel-item-half p-2">
+          <div class="relative h-full overflow-hidden rounded-2xl bg-[#142033] p-5 sm:p-6 transition transform hover:-translate-y-1 duration-300">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex flex-col justify-between h-36">
+                <div class="inline-flex w-fit items-center gap-2 rounded-md bg-white/5 px-2.5 py-1 text-xs font-medium text-white/70">
+                  <i data-lucide="globe" class="h-3.5 w-3.5"></i>
+                  Category
+                </div>
+                <h3 class="text-2xl font-bold text-white sm:text-3xl">
+                  Islamic Studies
+                </h3>
+              </div>
+              <img
+                src="assets/cat-islamic.png"
+                alt="Islamic Studies"
+                loading="lazy"
+                class="h-28 w-28 object-contain sm:h-32 sm:w-32"
+              />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Top-Rated Instructors Section -->
+  <section class="bg-[#f6f5f1] pt-10 sm:pt-14">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="mb-5 text-sm font-extrabold tracking-[0.18em] text-gray-900">
+        TOP-RATED INSTRUCTORS
+      </h2>
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        
+        <!-- Instructor 1: Sir Ahmed -->
+        <div class="mx-auto w-full max-w-[320px] overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200/60 transition duration-300 hover:shadow-md">
+          <div class="relative">
+            <img
+              src="assets/inst-1.jpg"
+              alt="Sir Ahmed"
+              loading="lazy"
+              class="h-40 w-full object-cover"
+            />
+            <span class="absolute left-2.5 top-2.5 inline-flex items-center gap-1 rounded-md bg-[#0c1422]/85 px-2 py-1 text-[10px] font-medium text-white backdrop-blur">
+              <i data-lucide="play-circle" class="h-3 w-3 text-[#f5c21a]"></i>
+              Intro Video
+            </span>
+            <button
+              aria-label="Favorite"
+              class="absolute right-2.5 top-2.5 grid h-7 w-7 place-items-center rounded-full bg-white/90 text-gray-600 transition hover:text-red-500"
+              onclick="this.classList.toggle('text-red-500')"
+            >
+              <i data-lucide="heart" class="h-3.5 w-3.5"></i>
+            </button>
+            <div class="absolute -bottom-6 left-4">
+              <img
+                src="assets/inst-1.jpg"
+                alt="Sir Ahmed"
+                class="h-12 w-12 rounded-full border-4 border-white object-cover"
+              />
+            </div>
+          </div>
+
+          <div class="px-4 pb-4 pt-8 text-left">
+            <p class="text-[13px] font-semibold text-gray-900">
+              Sir Ahmed, Lahore
+            </p>
+            <div class="mt-1.5">
+              <span class="inline-block rounded-md bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-600">
+                Mathematics · Physics
+              </span>
+            </div>
+            <div class="mt-3 flex items-center justify-between text-[13px]">
+              <span class="inline-flex items-center gap-1 text-gray-700">
+                <i data-lucide="star" class="h-3.5 w-3.5 fill-[#f5c21a] text-[#f5c21a]"></i>
+                <span class="font-semibold">4.9</span>
+                <span class="text-gray-400">(120)</span>
+              </span>
+              <span class="font-semibold text-gray-800">Rs. 1,500/hr</span>
+            </div>
+            <a
+              href="tutor.html?slug=sir-ahmed"
+              class="mt-3 block w-full rounded-lg bg-[#f5c21a] py-2 text-center text-[13px] font-semibold text-[#0c1422] transition hover:bg-[#ffcf33]"
+            >
+              Book Trial Slot
+            </a>
+          </div>
+        </div>
+
+        <!-- Instructor 2: Miss Sana -->
+        <div class="mx-auto w-full max-w-[320px] overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200/60 transition duration-300 hover:shadow-md">
+          <div class="relative">
+            <img
+              src="assets/inst-2.jpg"
+              alt="Miss Sana"
+              loading="lazy"
+              class="h-40 w-full object-cover"
+            />
+            <span class="absolute left-2.5 top-2.5 inline-flex items-center gap-1 rounded-md bg-[#0c1422]/85 px-2 py-1 text-[10px] font-medium text-white backdrop-blur">
+              <i data-lucide="play-circle" class="h-3 w-3 text-[#f5c21a]"></i>
+              Intro Video
+            </span>
+            <button
+              aria-label="Favorite"
+              class="absolute right-2.5 top-2.5 grid h-7 w-7 place-items-center rounded-full bg-white/90 text-gray-600 transition hover:text-red-500"
+              onclick="this.classList.toggle('text-red-500')"
+            >
+              <i data-lucide="heart" class="h-3.5 w-3.5"></i>
+            </button>
+            <div class="absolute -bottom-6 left-4">
+              <img
+                src="assets/inst-2.jpg"
+                alt="Miss Sana"
+                class="h-12 w-12 rounded-full border-4 border-white object-cover"
+              />
+            </div>
+          </div>
+
+          <div class="px-4 pb-4 pt-8 text-left">
+            <p class="text-[13px] font-semibold text-gray-900">
+              Miss Sana, Karachi
+            </p>
+            <div class="mt-1.5">
+              <span class="inline-block rounded-md bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-600">
+                English · IELTS
+              </span>
+            </div>
+            <div class="mt-3 flex items-center justify-between text-[13px]">
+              <span class="inline-flex items-center gap-1 text-gray-700">
+                <i data-lucide="star" class="h-3.5 w-3.5 fill-[#f5c21a] text-[#f5c21a]"></i>
+                <span class="font-semibold">4.8</span>
+                <span class="text-gray-400">(98)</span>
+              </span>
+              <span class="font-semibold text-gray-800">Rs. 1,500/hr</span>
+            </div>
+            <a
+              href="tutor.html?slug=miss-sana"
+              class="mt-3 block w-full rounded-lg bg-[#f5c21a] py-2 text-center text-[13px] font-semibold text-[#0c1422] transition hover:bg-[#ffcf33]"
+            >
+              Book Trial Slot
+            </a>
+          </div>
+        </div>
+
+        <!-- Instructor 3: Engr. Bilal -->
+        <div class="mx-auto w-full max-w-[320px] overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200/60 transition duration-300 hover:shadow-md">
+          <div class="relative">
+            <img
+              src="assets/inst-3.jpg"
+              alt="Engr. Bilal"
+              loading="lazy"
+              class="h-40 w-full object-cover"
+            />
+            <span class="absolute left-2.5 top-2.5 inline-flex items-center gap-1 rounded-md bg-[#0c1422]/85 px-2 py-1 text-[10px] font-medium text-white backdrop-blur">
+              <i data-lucide="play-circle" class="h-3 w-3 text-[#f5c21a]"></i>
+              Intro Video
+            </span>
+            <button
+              aria-label="Favorite"
+              class="absolute right-2.5 top-2.5 grid h-7 w-7 place-items-center rounded-full bg-white/90 text-gray-600 transition hover:text-red-500"
+              onclick="this.classList.toggle('text-red-500')"
+            >
+              <i data-lucide="heart" class="h-3.5 w-3.5"></i>
+            </button>
+            <div class="absolute -bottom-6 left-4">
+              <img
+                src="assets/inst-3.jpg"
+                alt="Engr. Bilal"
+                class="h-12 w-12 rounded-full border-4 border-white object-cover"
+              />
+            </div>
+          </div>
+
+          <div class="px-4 pb-4 pt-8 text-left">
+            <p class="text-[13px] font-semibold text-gray-900">
+              Engr. Bilal, Islamabad
+            </p>
+            <div class="mt-1.5">
+              <span class="inline-block rounded-md bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-600">
+                Web Development · Python
+              </span>
+            </div>
+            <div class="mt-3 flex items-center justify-between text-[13px]">
+              <span class="inline-flex items-center gap-1 text-gray-700">
+                <i data-lucide="star" class="h-3.5 w-3.5 fill-[#f5c21a] text-[#f5c21a]"></i>
+                <span class="font-semibold">4.9</span>
+                <span class="text-gray-400">(110)</span>
+              </span>
+              <span class="font-semibold text-gray-800">Rs. 1,500/hr</span>
+            </div>
+            <a
+              href="tutor.html?slug=engr-bilal"
+              class="mt-3 block w-full rounded-lg bg-[#f5c21a] py-2 text-center text-[13px] font-semibold text-[#0c1422] transition hover:bg-[#ffcf33]"
+            >
+              Book Trial Slot
+            </a>
+          </div>
+        </div>
+
+        <!-- Instructor 4: Miss Ayesha -->
+        <div class="mx-auto w-full max-w-[320px] overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200/60 transition duration-300 hover:shadow-md">
+          <div class="relative">
+            <img
+              src="assets/inst-4.jpg"
+              alt="Miss Ayesha"
+              loading="lazy"
+              class="h-40 w-full object-cover"
+            />
+            <span class="absolute left-2.5 top-2.5 inline-flex items-center gap-1 rounded-md bg-[#0c1422]/85 px-2 py-1 text-[10px] font-medium text-white backdrop-blur">
+              <i data-lucide="play-circle" class="h-3 w-3 text-[#f5c21a]"></i>
+              Intro Video
+            </span>
+            <button
+              aria-label="Favorite"
+              class="absolute right-2.5 top-2.5 grid h-7 w-7 place-items-center rounded-full bg-white/90 text-gray-600 transition hover:text-red-500"
+              onclick="this.classList.toggle('text-red-500')"
+            >
+              <i data-lucide="heart" class="h-3.5 w-3.5"></i>
+            </button>
+            <div class="absolute -bottom-6 left-4">
+              <img
+                src="assets/inst-4.jpg"
+                alt="Miss Ayesha"
+                class="h-12 w-12 rounded-full border-4 border-white object-cover"
+              />
+            </div>
+          </div>
+
+          <div class="px-4 pb-4 pt-8 text-left">
+            <p class="text-[13px] font-semibold text-gray-900">
+              Miss Ayesha, Rawalpindi
+            </p>
+            <div class="mt-1.5">
+              <span class="inline-block rounded-md bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-600">
+                Schooling · General Science
+              </span>
+            </div>
+            <div class="mt-3 flex items-center justify-between text-[13px]">
+              <span class="inline-flex items-center gap-1 text-gray-700">
+                <i data-lucide="star" class="h-3.5 w-3.5 fill-[#f5c21a] text-[#f5c21a]"></i>
+                <span class="font-semibold">4.9</span>
+                <span class="text-gray-400">(132)</span>
+              </span>
+              <span class="font-semibold text-gray-800">Rs. 1,500/hr</span>
+            </div>
+            <a
+              href="tutor.html?slug=miss-ayesha"
+              class="mt-3 block w-full rounded-lg bg-[#f5c21a] py-2 text-center text-[13px] font-semibold text-[#0c1422] transition hover:bg-[#ffcf33]"
+            >
+              Book Trial Slot
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Complete Process Section -->
+  <section class="bg-[#f6f5f1] pt-12 sm:pt-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="mb-6 text-sm font-extrabold tracking-[0.18em] text-gray-900">
+        OUR COMPLETE PROCESS
+      </h2>
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        
+        <!-- Step 1 -->
+        <div class="relative overflow-hidden rounded-2xl bg-[#142033] p-6 transition duration-300 hover:scale-[1.02]">
+          <div class="absolute left-5 top-3 text-3xl font-extrabold text-white/20">
+            1
+          </div>
+          <div class="flex justify-end">
+            <img
+              src="assets/proc-register.png"
+              alt="REGISTER"
+              loading="lazy"
+              class="h-24 w-24 object-contain"
+            />
+          </div>
+          <h3 class="mt-4 text-xl font-extrabold tracking-wide text-white">
+            REGISTER
+          </h3>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative overflow-hidden rounded-2xl bg-[#142033] p-6 transition duration-300 hover:scale-[1.02]">
+          <div class="absolute left-5 top-3 text-3xl font-extrabold text-white/20">
+            2
+          </div>
+          <div class="flex justify-end">
+            <img
+              src="assets/proc-find.png"
+              alt="FIND TUTOR"
+              loading="lazy"
+              class="h-24 w-24 object-contain"
+            />
+          </div>
+          <h3 class="mt-4 text-xl font-extrabold tracking-wide text-white">
+            FIND TUTOR
+          </h3>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative overflow-hidden rounded-2xl bg-[#142033] p-6 transition duration-300 hover:scale-[1.02]">
+          <div class="absolute left-5 top-3 text-3xl font-extrabold text-white/20">
+            3
+          </div>
+          <div class="flex justify-end">
+            <img
+              src="assets/proc-book.png"
+              alt="BOOK SLOT"
+              loading="lazy"
+              class="h-24 w-24 object-contain"
+            />
+          </div>
+          <h3 class="mt-4 text-xl font-extrabold tracking-wide text-white">
+            BOOK SLOT
+          </h3>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="relative overflow-hidden rounded-2xl bg-[#142033] p-6 transition duration-300 hover:scale-[1.02]">
+          <div class="absolute left-5 top-3 text-3xl font-extrabold text-white/20">
+            4
+          </div>
+          <div class="flex justify-end">
+            <img
+              src="assets/proc-live.png"
+              alt="LEARN LIVE"
+              loading="lazy"
+              class="h-24 w-24 object-contain"
+            />
+          </div>
+          <h3 class="mt-4 text-xl font-extrabold tracking-wide text-white">
+            LEARN LIVE
+          </h3>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="relative overflow-hidden rounded-2xl bg-[#142033] p-6 transition duration-300 hover:scale-[1.02]">
+          <div class="absolute left-5 top-3 text-3xl font-extrabold text-white/20">
+            5
+          </div>
+          <div class="flex justify-end">
+            <img
+              src="assets/proc-feedback.png"
+              alt="GIVE FEEDBACK"
+              loading="lazy"
+              class="h-24 w-24 object-contain"
+            />
+          </div>
+          <h3 class="mt-4 text-xl font-extrabold tracking-wide text-white">
+            GIVE FEEDBACK
+          </h3>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Student Testimonials Section -->
+  <section class="bg-[#f6f5f1] pt-12 sm:pt-16 pb-12">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="mb-2 text-sm font-extrabold tracking-[0.18em] text-gray-900">
+            STUDENT TESTIMONIALS
+          </h2>
+          <p class="mb-6 text-sm text-gray-600">
+            Swipe to read more reviews
+          </p>
+        </div>
+
+        <!-- Slider Navigation -->
+        <div class="flex gap-2">
+          <button id="test-prev-btn" class="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 bg-white hover:bg-gray-100 transition shadow-sm" aria-label="Previous">
+            <i data-lucide="chevron-left" class="h-5 w-5 text-gray-700"></i>
+          </button>
+          <button id="test-next-btn" class="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 bg-white hover:bg-gray-100 transition shadow-sm" aria-label="Next">
+            <i data-lucide="chevron-right" class="h-5 w-5 text-gray-700"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Testimonials Slider -->
+      <div id="testimonials-slider" class="carousel-container gap-4">
+        
+        <!-- Review 1 -->
+        <div class="carousel-item carousel-item-half lg:carousel-item-third p-2">
+          <div class="h-full rounded-2xl bg-[#142033] p-5 text-[#d0d4dc] flex flex-col justify-between min-h-[220px]">
+            <p class="text-sm leading-relaxed">
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore magna magnis venam eaipat exercitat voluptat."
+            </p>
+            <div class="mt-5 flex items-center gap-3">
+              <img
+                src="assets/inst-2.jpg"
+                alt="Miss Sana"
+                class="h-10 w-10 rounded-full object-cover"
+              />
+              <div>
+                <p class="text-sm font-semibold text-white">Miss Sana</p>
+                <div class="mt-0.5 flex gap-0.5">
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="carousel-item carousel-item-half lg:carousel-item-third p-2">
+          <div class="h-full rounded-2xl bg-[#142033] p-5 text-[#d0d4dc] flex flex-col justify-between min-h-[220px]">
+            <p class="text-sm leading-relaxed">
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore magna magnis venam eaipat exercitat voluptat."
+            </p>
+            <div class="mt-5 flex items-center gap-3">
+              <img
+                src="assets/inst-1.jpg"
+                alt="Jehl"
+                class="h-10 w-10 rounded-full object-cover"
+              />
+              <div>
+                <p class="text-sm font-semibold text-white">Jehl</p>
+                <div class="mt-0.5 flex gap-0.5">
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="carousel-item carousel-item-half lg:carousel-item-third p-2">
+          <div class="h-full rounded-2xl bg-[#142033] p-5 text-[#d0d4dc] flex flex-col justify-between min-h-[220px]">
+            <p class="text-sm leading-relaxed">
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore magna magnis venam eaipat exercitat voluptat."
+            </p>
+            <div class="mt-5 flex items-center gap-3">
+              <img
+                src="assets/inst-3.jpg"
+                alt="Atenue Sehor"
+                class="h-10 w-10 rounded-full object-cover"
+              />
+              <div>
+                <p class="text-sm font-semibold text-white">Atenue Sehor</p>
+                <div class="mt-0.5 flex gap-0.5">
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 4 -->
+        <div class="carousel-item carousel-item-half lg:carousel-item-third p-2">
+          <div class="h-full rounded-2xl bg-[#142033] p-5 text-[#d0d4dc] flex flex-col justify-between min-h-[220px]">
+            <p class="text-sm leading-relaxed">
+              "Excellent platform for learning. The tutors are highly qualified and the booking system is seamless. Highly recommended for anyone looking to enhance their skills."
+            </p>
+            <div class="mt-5 flex items-center gap-3">
+              <img
+                src="assets/inst-4.jpg"
+                alt="Ali Hassan"
+                class="h-10 w-10 rounded-full object-cover"
+              />
+              <div>
+                <p class="text-sm font-semibold text-white">Ali Hassan</p>
+                <div class="mt-0.5 flex gap-0.5">
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 5 -->
+        <div class="carousel-item carousel-item-half lg:carousel-item-third p-2">
+          <div class="h-full rounded-2xl bg-[#142033] p-5 text-[#d0d4dc] flex flex-col justify-between min-h-[220px]">
+            <p class="text-sm leading-relaxed">
+              "My experience with Ustad Hub has been amazing. The tutors are patient and the quality of teaching is exceptional. Found the perfect tutor for my needs."
+            </p>
+            <div class="mt-5 flex items-center gap-3">
+              <img
+                src="assets/inst-2.jpg"
+                alt="Fatima Khan"
+                class="h-10 w-10 rounded-full object-cover"
+              />
+              <div>
+                <p class="text-sm font-semibold text-white">Fatima Khan</p>
+                <div class="mt-0.5 flex gap-0.5">
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 6 -->
+        <div class="carousel-item carousel-item-half lg:carousel-item-third p-2">
+          <div class="h-full rounded-2xl bg-[#142033] p-5 text-[#d0d4dc] flex flex-col justify-between min-h-[220px]">
+            <p class="text-sm leading-relaxed">
+              "Great platform for online learning. The tutors are professional and the interface is very user-friendly. My children have improved significantly."
+            </p>
+            <div class="mt-5 flex items-center gap-3">
+              <img
+                src="assets/inst-1.jpg"
+                alt="Usman Malik"
+                class="h-10 w-10 rounded-full object-cover"
+              />
+              <div>
+                <p class="text-sm font-semibold text-white">Usman Malik</p>
+                <div class="mt-0.5 flex gap-0.5">
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                  <i data-lucide="star" class="h-3 w-3 fill-[#f5c21a] text-[#f5c21a]"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Component -->
+  <footer class="mt-12 bg-[#0c1422] text-[#d0d4dc] sm:mt-16">
+    <div class="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-10 sm:px-6 md:grid-cols-5 lg:px-8">
+      
+      <!-- Brand & Socials -->
+      <div class="col-span-2 md:col-span-1">
+        <div class="flex items-center gap-2">
+          <i data-lucide="zap" class="h-5 w-5 fill-[#f5c21a] text-[#f5c21a]"></i>
+          <span class="text-lg font-extrabold text-white">
+            USTAD <span class="text-[#f5c21a]">HUB</span>
+          </span>
+        </div>
+        <div class="mt-4 flex gap-3 text-white">
+          <a href="#" aria-label="Twitter" class="hover:text-[#f5c21a] transition">
+            <i data-lucide="twitter" class="h-5 w-5"></i>
+          </a>
+          <a href="#" aria-label="Facebook" class="hover:text-[#f5c21a] transition">
+            <i data-lucide="facebook" class="h-5 w-5"></i>
+          </a>
+          <a href="#" aria-label="Instagram" class="hover:text-[#f5c21a] transition">
+            <i data-lucide="instagram" class="h-5 w-5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Categories Col -->
+      <div>
+        <p class="mb-3 text-xs font-bold tracking-[0.15em] text-white">
+          CATEGORIES
+        </p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Languages</a></li>
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Tech</a></li>
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Schooling</a></li>
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Advertising</a></li>
+        </ul>
+      </div>
+
+      <!-- Company Col -->
+      <div>
+        <p class="mb-3 text-xs font-bold tracking-[0.15em] text-white">
+          COMPANY
+        </p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="transition hover:text-[#f5c21a]">About</a></li>
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Careers</a></li>
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal Col -->
+      <div>
+        <p class="mb-3 text-xs font-bold tracking-[0.15em] text-white">
+          LEGAL
+        </p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Privacy Policy</a></li>
+          <li><a href="#" class="transition hover:text-[#f5c21a]">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter Col -->
+      <div>
+        <p class="mb-3 text-xs font-bold tracking-[0.15em] text-white">
+          NEWSLETTER
+        </p>
+        <form onsubmit="event.preventDefault(); window.showToast('Subscribed with: ' + this.querySelector('input').value);" class="flex flex-col gap-2">
+          <input
+            type="email"
+            placeholder="Email your address"
+            required
+            class="rounded-md bg-white/5 px-3 py-2 text-sm text-white outline-none ring-1 ring-white/10 placeholder:text-white/40 focus:ring-[#f5c21a] transition"
+          />
+          <button type="submit" class="rounded-md bg-[#f5c21a] py-2 text-sm font-semibold text-[#0c1422] hover:bg-[#ffcf33] transition">
+            SUBSCRIBE
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Lucide Icons Library CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Main Script -->
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Set up sliders
+      setupCarousel("categories-slider", "cat-prev-btn", "cat-next-btn");
+      setupCarousel("testimonials-slider", "test-prev-btn", "test-next-btn");
+    });
+  </script>
+</body>
+</html>
